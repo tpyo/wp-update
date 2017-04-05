@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+
+require dirname(__FILE__).'/wp-update.lib.php';
+require dirname(__FILE__).'/config.php';
+
+try
+{
+        $wpUpdate = new WPUpdate();
+        $wpUpdate->setFolder($root);
+        $wpUpdate->update();
+        $wpUpdate->updatePlugins($skip);
+        $wpUpdate->cleanup();
+}
+catch (Exception $e)
+{
+        printf("ERROR: %s" . PHP_EOL, $e->getMessage());
+}
